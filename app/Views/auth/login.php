@@ -35,29 +35,26 @@
                         <strong> Enter Details To Login </strong>
                     </div>
                     <div class="panel-body">
-                        <form role="form" method="POST" action="<?= site_url('auth/loginProcess') ?>">
-                            <br />
-                            <div class="form-group input-group">
-                                <span class="input-group-addon"><i class="fa fa-tag"></i></span>
-                                <input type="text" class="form-control" name="username" placeholder="Your Username " />
+                        <?php if (!empty(session()->getFlashdata('gagal'))) { ?>
+                            <div class="alert alert-warning">
+                                <?= session()->getFlashdata('gagal'); ?>
                             </div>
-                            <div class="form-group input-group">
-                                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                                <input type="password" class="form-control" name="password" placeholder="Your Password" />
-                            </div>
-                            <div class="form-group">
-                                <label class="checkbox-inline">
-                                    <input type="checkbox" /> Remember me
-                                </label>
-                                <span class="pull-right">
-                                    <a href="#">Forget password ? </a>
-                                </span>
-                            </div>
+                        <?php } ?>
+                        <?= form_open('login/cek_login') ?>
+                        <br />
+                        <div class="form-group input-group">
+                            <span class="input-group-addon"><i class="fa fa-tag"></i></span>
+                            <input type="text" class="form-control" name="username" placeholder="Username " required />
+                        </div>
+                        <div class="form-group input-group">
+                            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                            <input type="password" class="form-control" name="password" placeholder="Password" required />
+                        </div>
 
-                            <button type="submit" class="btn btn-primary ">Login Now</button>
-                            <hr />
-                            Not register ? <a href="registeration.html">click here </a>
-                        </form>
+                        <button type="submit" class="btn btn-primary ">Login Now</button>
+                        <hr />
+                        <a href="/auth/register">Belum punya akun?</a>
+                        <?= form_close() ?>
                     </div>
 
                 </div>
